@@ -16,6 +16,11 @@ const App = () => {
     setTodoList([...TodoList, newTodo])
   }
 
+  const deleteTodo = (id) => {
+    const newTodo = TodoList.filter(item => item.id !== id)
+    setTodoList(newTodo)
+  }
+
   const randomIntFromInterval = (min, max) => { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
@@ -30,6 +35,7 @@ const App = () => {
       {TodoList.length > 0 ?
         <TodoData
           TodoList={TodoList}
+          deleteTodo={deleteTodo}
         />
         :
         <div className='todo-image'>
