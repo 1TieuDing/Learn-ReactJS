@@ -1,14 +1,13 @@
 import { Input, Modal, notification } from "antd"
 import { useEffect, useState } from "react"
-import { createUserApi } from "../../services/api.service"
-import { use } from "react"
+import { updateUserApi } from "../../services/api.service"
 
 const UpdateUserModal = (props) => {
     const [id, setId] = useState("")
     const [fullName, setFullName] = useState("")
     const [phone, setPhone] = useState("")
 
-    const { isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate } = props
+    const { isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate, loadUser } = props
 
     useEffect(() => {
         console.log(">>> check dataUpdate: ", dataUpdate)
@@ -20,11 +19,11 @@ const UpdateUserModal = (props) => {
     }, [dataUpdate])
 
     const handleSubmitBtn = async () => {
-        const res = await createUserApi(fullName, email, password, phone)
+        const res = await updateUserApi(id, fullName, phone)
         if (res.data) {
             notification.success({
-                message: "create user",
-                description: "Tạo user thành công"
+                message: "Update user",
+                description: "Cập nhât thành công"
             })
             resetAndCloseModal()
             await loadUser()
