@@ -69,7 +69,7 @@ const registerUserApi = (fullName, email, password, phone) => {
 }
 
 const loginApi = (email, password) => {
-    const URL_BACKEND = "api/v1/auth/login"
+    const URL_BACKEND = "/api/v1/auth/login"
     const data = {
         username: email,
         password: password,
@@ -79,13 +79,18 @@ const loginApi = (email, password) => {
 }
 
 const getAccountApi = () => {
-    const URL_BACKEND = "api/v1/auth/account"
-    return axios.get(URL_BACKEND)
+    const URL_BACKEND = "/api/v1/auth/account"
+    return axios.get(URL_BACKEND);
+}
+
+const logoutApi = () => {
+    const URL_BACKEND = "/api/v1/auth/logout"
+    return axios.post(URL_BACKEND)
 }
 
 export {
     createUserApi,
     updateUserApi,
     fetchUserApi,
-    deleteUserApi, handleUploadFile, updateUserAvatarApi, registerUserApi, loginApi, getAccountApi
+    deleteUserApi, handleUploadFile, updateUserAvatarApi, registerUserApi, loginApi, getAccountApi, logoutApi
 }
