@@ -4,7 +4,7 @@ import { createBookApi, handleUploadFile } from "../../services/api.service";
 
 const CreateBookUncontrol = (props) => {
     const {
-        isCreateOpen, setIsCreateOpen, loadBook
+        isCreateOpen, setIsCreateOpen, loadBook,
     } = props;
 
     const [form] = Form.useForm()
@@ -14,7 +14,6 @@ const CreateBookUncontrol = (props) => {
 
 
     const handleSubmitBtn = async (values) => {
-
         if (!selectedFile) {
             notification.error({
                 message: "Error create book",
