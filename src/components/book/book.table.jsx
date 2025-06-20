@@ -2,12 +2,16 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons"
 import { Button, Popconfirm, Table } from "antd"
 import { useEffect, useState } from "react"
 import { fetchBookApi } from "../../services/api.service"
+import BookDetail from "./book.detail"
 
 const BookTable = () => {
     const [dataBooks, setDataBooks] = useState([])
     const [current, setCurrent] = useState([1])
     const [pageSize, setPageSize] = useState([5])
     const [total, setTotal] = useState([0])
+
+    const [isDataOpen, setIsDataOpen] = useState(false)
+    const [dataDetail, setDataDetail] = useState(null)
 
     useEffect(() => {
         loadBook()
@@ -38,6 +42,10 @@ const BookTable = () => {
             render: (_, record) => (
                 <a
                     href="#"
+                    onClick={() => {
+                        setIsDataOpen(true)
+                        setDataDetail(record)
+                    }}
                 >{record._id}</a>
             ),
         },
@@ -133,6 +141,13 @@ const BookTable = () => {
                     }
                 }
                 onChange={onChange}
+            />
+
+            <BookDetail
+                isDataOpen={isDataOpen}
+                setIsDataOpen={setIsDataOpen}
+                dataDetail={dataDetail}
+                setDataDetail={setDataDetail}
             />
         </>
     )
