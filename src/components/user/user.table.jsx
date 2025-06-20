@@ -54,7 +54,6 @@ const UserTable = (props) => {
                     }}
                 >{record._id}</a>
             ),
-
         },
         {
             title: 'Full Name',
