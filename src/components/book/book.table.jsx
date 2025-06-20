@@ -5,6 +5,7 @@ import { fetchBookApi } from "../../services/api.service"
 import BookDetail from "./book.detail"
 import CreateBookControl from "./create.book.control"
 import CreateBookUncontrol from "./create.book.uncontrol"
+import UpdateBookControl from "./update.book.control"
 
 const BookTable = () => {
     const [dataBooks, setDataBooks] = useState([])
@@ -16,6 +17,9 @@ const BookTable = () => {
     const [dataDetail, setDataDetail] = useState(null)
 
     const [isCreateOpen, setIsCreateOpen] = useState(false);
+
+    const [dataUpdate, setDataUpdate] = useState(null);
+    const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
 
     useEffect(() => {
         loadBook()
@@ -82,10 +86,10 @@ const BookTable = () => {
             render: (_, record) => (
                 <div style={{ display: 'flex', gap: '20px' }}>
                     <EditOutlined
-                        // onClick={() => {
-                        //     setDataUpdate(record)
-                        //     setIsModalUpdateOpen(true)
-                        // }}
+                        onClick={() => {
+                            setDataUpdate(record)
+                            setIsModalUpdateOpen(true)
+                        }}
                         style={{ cursor: 'pointer', color: 'orange' }}
                     />
                     <Popconfirm
@@ -164,6 +168,14 @@ const BookTable = () => {
             <CreateBookUncontrol
                 isCreateOpen={isCreateOpen}
                 setIsCreateOpen={setIsCreateOpen}
+                loadBook={loadBook}
+            />
+
+            <UpdateBookControl
+                dataUpdate={dataUpdate}
+                setDataUpdate={setDataUpdate}
+                isModalUpdateOpen={isModalUpdateOpen}
+                setIsModalUpdateOpen={setIsModalUpdateOpen}
                 loadBook={loadBook}
             />
         </>
